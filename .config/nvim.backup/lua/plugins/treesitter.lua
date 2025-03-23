@@ -25,7 +25,6 @@ return {
       "json",
       "toml",
       "yaml",
-      "sql",
     },
     auto_install = true,
     highlight = {

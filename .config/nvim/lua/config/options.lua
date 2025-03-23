@@ -1,33 +1,45 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
---
 
-local opt = vim.opt
+vim.opt.timeoutlen = 1000
 
--- Line wrapping
-opt.wrap = true
+vim.opt.wrap = true
+vim.opt.colorcolumn = "80"
 
--- Search options
-opt.ignorecase = true
-opt.smartcase = true
+vim.opt_backup = false
+vim.opt.clipboard = "unnamedplus"
+vim.opt.cmdheight = 1
+vim.opt.completeopt = { "menuone", "noselect" }
 
--- Cursor line
-opt.cursorline = true
+-- If set to 0 it shows all the symbols in a file
+vim.opt.conceallevel = 0
 
--- Appearance
-opt.termguicolors = true
+vim.opt.hlsearch = true
+vim.opt.ignorecase = true
+vim.opt.mouse = "a"
+vim.opt.showtabline = 1
+vim.opt.smartcase = true
 
-opt.signcolumn = 'yes'
+vim.opt.tabstop = 2
+vim.opt.cursorline = true
+vim.opt.number = true
+vim.opt.laststatus = 3
 
--- Backspace
-opt.backspace = 'indent,eol,start'
+vim.opt.ruler = false
+vim.opt.title = true
+vim.opt.titlelen = 0
+vim.opt.fillchars = vim.opt.fillchars + "eob: "
+vim.opt.fillchars:append({
+  stl = " ",
+})
 
--- Clipboard
--- opt.clipboard:append("unnamedplus")
+vim.opt.shortmess:append("c")
 
--- Split windows-- Split windows
-opt.splitright = true
-opt.splitbelow = true
+vim.opt.guifont = "SauceCodePro Nerd Font:h12"
 
-opt.iskeyword:append("-")
+vim.cmd("set whichwrap+=<,>,[,],h,l")
+vim.cmd([[set iskeyword+=-]])
+
+vim.g.netrw_banner = 0
+vim.g.netrw_mouse = 2
