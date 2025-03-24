@@ -4,9 +4,12 @@ return {
     name = "nord",
   },
   {
+    "EdenEast/nightfox.nvim",
+  },
+  {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "nord",
+      colorscheme = "nightfox",
     },
   },
 }
