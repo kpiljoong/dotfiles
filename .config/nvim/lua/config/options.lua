@@ -1,23 +1,31 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+-- disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+vim.opt.incsearch = true
+vim.opt.backup = false
+vim.opt.clipboard = "unnamedplus"
+vim.opt.cmdheight = 1
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+-- If set to 0 it shows all the symbols in a file
+vim.opt.conceallevel = 0
 
 vim.opt.timeoutlen = 1000
 
 vim.opt.wrap = true
 vim.opt.colorcolumn = "80"
 
-vim.opt_backup = false
-vim.opt.clipboard = "unnamedplus"
-vim.opt.cmdheight = 1
-vim.opt.completeopt = { "menuone", "noselect" }
-
--- If set to 0 it shows all the symbols in a file
-vim.opt.conceallevel = 0
-
 vim.opt.hlsearch = true
 vim.opt.ignorecase = true
 vim.opt.mouse = "a"
+vim.opt.pumheight = 10
+vim.opt.showmode = false
 vim.opt.showtabline = 1
 vim.opt.smartcase = true
 

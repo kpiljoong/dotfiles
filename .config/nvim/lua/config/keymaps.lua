@@ -2,7 +2,11 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-local M = {}
+local opts = { noremap = true, silent = true }
+
+-- Keep cursor centered when scrolling
+-- vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
+-- vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
 
 local scroll_percentage = 0.35
 vim.keymap.set("n", "<C-d>", function()
@@ -24,4 +28,19 @@ end, { desc = "Dimiss All" })
 
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "[P]Yank to system clipboard" })
 
-return M
+-- map enter to ciw in normal mode
+vim.keymap.set("n", "<CR>", "ciw", opts)
+vim.keymap.set("n", "<BS>", "ci", opts)
+
+vim.keymap.set("n", "n", "nzzv", opts)
+vim.keymap.set("n", "N", "Nzzv", opts)
+vim.keymap.set("n", "*", "*zzv", opts)
+vim.keymap.set("n", "#", "#zzv", opts)
+vim.keymap.set("n", "g*", "g*zz", opts)
+vim.keymap.set("n", "g#", "g#zz", opts)
+
+-- ctrl + x to cut full line
+vim.keymap.set("n", "<C-x>", "dd", opts)
+
+-- select all
+vim.keymap.set("n", "<C-a>", "ggVG", opts)

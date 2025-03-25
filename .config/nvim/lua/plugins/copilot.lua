@@ -1,6 +1,8 @@
 return {
   "zbirenbaum/copilot.lua",
-  event = "VeryLazy",
+  cmd = "Copilot",
+  build = ":Copilot auth",
+  event = "InsertEnter",
   dependencies = {
     "zbirenbaum/copilot-cmp",
   },
@@ -9,13 +11,31 @@ return {
       suggestion = {
         enabled = true,
         auto_trigger = true,
+        debounce = 75,
         keymap = {
-          accept = "<Tab>",
-          next = "<M-]>",
-          prev = "<M-[>",
+          accept = "<c-a>",
+          accept_word = false,
+          accept_line = false,
+          next = "<c-j>",
+          prev = "<c-k>",
+          dismiss = "<C-e>",
         },
       },
-      panel = { enabled = false },
+      panel = {
+        enabled = true,
+        auto_refresh = true,
+        keymap = {
+          jump_next = "<c-j>",
+          jump_prev = "<c-k>",
+          accept = "<c-a>",
+          refresh = "r",
+          open = "<M-CR>",
+        },
+        layout = {
+          position = "bottom",
+          ratio = 0.4,
+        },
+      },
       filetypes = {
         markdown = true,
         help = true,
