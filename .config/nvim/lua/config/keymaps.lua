@@ -32,10 +32,10 @@ vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "[P]Yank to system c
 vim.keymap.set("n", "<CR>", "ciw", opts)
 vim.keymap.set("n", "<BS>", "ci", opts)
 
-vim.keymap.set("n", "n", "nzzv", opts)
-vim.keymap.set("n", "N", "Nzzv", opts)
-vim.keymap.set("n", "*", "*zzv", opts)
-vim.keymap.set("n", "#", "#zzv", opts)
+vim.keymap.set("n", "n", "nzz", opts)
+vim.keymap.set("n", "N", "Nzz", opts)
+vim.keymap.set("n", "*", "*zz", opts)
+vim.keymap.set("n", "#", "#zz", opts)
 vim.keymap.set("n", "g*", "g*zz", opts)
 vim.keymap.set("n", "g#", "g#zz", opts)
 
