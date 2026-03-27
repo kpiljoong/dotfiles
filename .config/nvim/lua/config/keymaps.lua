@@ -44,3 +44,7 @@ vim.keymap.set("n", "<C-x>", "dd", opts)
 
 -- select all
 vim.keymap.set("n", "<C-a>", "ggVG", opts)
+
+vim.keymap.set("n", "<leader>cz", function()
+  vim.lsp.buf.format({ { async = true } })
+end)

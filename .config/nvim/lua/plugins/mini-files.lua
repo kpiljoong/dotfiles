@@ -1,7 +1,7 @@
 local mini_files_km = require("config.modules.mini-files-km")
 local mini_files_git = require("config.modules.mini-files-git")
 return {
-  "echasnovski/mini.files",
+  "nvim-mini/mini.files",
   opts = function(_, opts)
     opts.mappings = vim.tbl_deep_extend("force", opts.mappings or {}, {
       close = "<esc>",

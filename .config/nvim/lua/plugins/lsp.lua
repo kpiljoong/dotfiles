@@ -2,12 +2,19 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    { "williamboman/mason.nvim", config = true },
-    "williamboman/mason-lspconfig.nvim",
+    { "mason-org/mason.nvim", config = true },
+    {
+      "mason-org/mason-lspconfig.nvim",
+      opts = {
+        ensure_installed = vim.tbl_keys(require("plugins.lsp.servers")),
+        automatic_enable = true,
+      },
+    },
     { "j-hui/fidget.nvim", opts = {} },
     { "b0o/schemastore.nvim" },
     -- { "hrsh7th/cmp-nvim-lsp", lazy = false },
   },
+
   config = function()
     require("mason").setup({
       ui = {
@@ -19,25 +26,44 @@ return {
         },
       },
     })
+
+    ---------------------
+    -- Mason-LSPConfig v2
+    ---------------------
+    local servers = require("plugins.lsp.servers")
+
     require("mason-lspconfig").setup({
-      ensure_installed = vim.tbl_keys(require("plugins.lsp.servers")),
+      ensure_installed = vim.tbl_keys(servers),
+      automatic_installation = true,
+      automatic_enable = true,
     })
-    require("lspconfig.ui.windows").default_options_border = "single"
+
+    -- require("mason-lspconfig").setup({
+    --   ensure_installed = vim.tbl_keys(require("plugins.lsp.servers")),
+    -- })
+    -- require("lspconfig.ui.windows").default_options_border = "single"
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     -- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+    for name, opts in pairs(servers) do
+      opts.capabilities = capabilities
+      require("lspconfig")[name].setup(opts)
+    end
 
-    local mason_lspconfig = require("mason-lspconfig")
-    mason_lspconfig.setup_handlers({
-      function(server_name)
-        require("lspconfig")[server_name].setup({
-          capabilities = capabilities,
-          settings = require("plugins.lsp.servers")[server_name],
-          filetypes = (require("plugins.lsp.servers")[server_name] or {}).filetypes,
-        })
-      end,
-    })
-
+    -- local mason_lspconfig = require("mason-lspconfig")
+    -- mason_lspconfig.setup({
+    --   ensure_installed = {},
+    -- })
+    -- mason_lspconfig.setup_handlers({
+    --   function(server_name)
+    --     require("lspconfig")[server_name].setup({
+    --       capabilities = capabilities,
+    --       settings = require("plugins.lsp.servers")[server_name],
+    --       filetypes = (require("plugins.lsp.servers")[server_name] or {}).filetypes,
+    --     })
+    --   end,
+    -- })
+    --
     require("lspconfig").gleam.setup({
       cmd = { "gleam", "lsp" },
       filetypes = { "gleam" },
@@ -60,6 +86,7 @@ return {
         prefix = "",
       },
     })
+
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type

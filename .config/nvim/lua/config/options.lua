@@ -30,6 +30,8 @@ vim.opt.showtabline = 1
 vim.opt.smartcase = true
 
 vim.opt.tabstop = 2
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 vim.opt.cursorline = true
 vim.opt.number = true
 vim.opt.laststatus = 3

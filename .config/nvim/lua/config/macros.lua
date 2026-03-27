@@ -7,5 +7,8 @@ vim.api.nvim_create_autocmd("FileType", {
   pattern = { "javascript", "typescript" },
   callback = function()
     vim.fn.setreg("l", "yoconsole.log('" .. esc .. "pa:" .. esc .. "la, " .. esc .. "pl" .. esc .. "')")
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.expandtab = true
   end,
 })
